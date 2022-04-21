@@ -3,14 +3,14 @@ CREATE DATABASE pevn;
 CREATE TABLE professor (
     id_p SERIAL PRIMARY KEY,
     p_name TEXT NOT NULL,
-    p_email TEXT NOT NULL,
+    p_email TEXT NOT NULL UNIQUE,
     p_password TEXT NOT NULL
 );
 
 CREATE TABLE student(
     id_s SERIAL PRIMARY KEY,
     s_name TEXT NOT NULL,
-    s_email TEXT NOT NULL,
+    s_email TEXT NOT NULL UNIQUE,
     s_password TEXT NOT NULL
 );
 

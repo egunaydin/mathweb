@@ -14,10 +14,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload({ useTempFiles: true }));
 
-
 // ! Routes
 app.use("/", require("./routes/auth.routes"));
 app.use("/professor", require("./routes/professor.routes"));
+app.use("/student", require("./routes/student.routes"));
 
 // ! Middlewares for VueJs
 app.use(history());

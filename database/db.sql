@@ -26,6 +26,10 @@ CREATE TABLE student_courses(
     c_id INTEGER NOT NULL REFERENCES course(id_c)
 );
 
+CREATE VIEW professor_course
+AS
+SELECT * FROM course JOIN (SELECT p_name,p_email,id_p FROM professor) AS p ON p_id =id_p;
+
 CREATE TABLE assignment(
     id_a SERIAL PRIMARY KEY,
     c_id INTEGER NOT NULL REFERENCES course(id_c),

@@ -19,6 +19,10 @@ router.get("/my-courses",professor.getCourses);
 
 router.post('/assignment/:id_c',professor.createAssignment);
 
+router.get('/course-assignments/:id_c',professor.getAssignments);
+
 // ! DELIVERIES
+
+router.get('/deliveries/:id_a',professor.getDeliveries);
 
 module.exports = router;

@@ -53,50 +53,60 @@ authentication.signUp = async (req, res) => {
   }
 };
 
-authentication.signIn = async(req,res)=>{
+authentication.signIn = async (req, res) => {
   const { email, password, role } = req.body;
-  if (role == 'professor') {
+  if (role == "professor") {
     try {
-      const professor = await (await pool.query('SELECT * FROM professor WHERE p_email =$1 AND p_password=$2',[email,password])).rows;
-      if (professor.length>0) {
+      const professor = await (
+        await pool.query(
+          "SELECT * FROM professor WHERE p_email =$1 AND p_password=$2",
+          [email, password]
+        )
+      ).rows;
+      if (professor.length > 0) {
         res.status(200).json({
-          id:professor[0].id_p,
-          name:professor[0].p_name,
-          email:professor[0].p_email,
-          role:'professor',
+          id: professor[0].id_p,
+          name: professor[0].p_name,
+          email: professor[0].p_email,
+          role: "professor",
         });
       } else {
         res.status(200).json({
-          message:'Professor user not found',
-          NotFound:true
+          message: "Professor user not found",
+          NotFound: true,
         });
       }
     } catch (error) {
       res.status(500).json({
-        message:'An error has occured',
-        error
+        message: "An error has occured",
+        error,
       });
     }
   } else {
     try {
-      const student = await (await pool.query('SELECT * FROM student WHERE s_email =$1 AND s_password=$2',[email,password])).rows;
-      if (student.length>0) {
+      const student = await (
+        await pool.query(
+          "SELECT * FROM student WHERE s_email =$1 AND s_password=$2",
+          [email, password]
+        )
+      ).rows;
+      if (student.length > 0) {
         res.status(200).json({
-          id:student[0].id_s,
-          name:student[0].s_name,
-          email:student[0].s_email,
-          role:'student',
+          id: student[0].id_s,
+          name: student[0].s_name,
+          email: student[0].s_email,
+          role: "student",
         });
       } else {
         res.status(200).json({
-          message:'Student user not found',
-          NotFound:true
+          message: "Student user not found",
+          NotFound: true,
         });
       }
     } catch (error) {
       res.status(500).json({
-        message:'An error has occured',
-        error
+        message: "An error has occured",
+        error,
       });
     }
   }
